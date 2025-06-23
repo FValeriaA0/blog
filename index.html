@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Blog de Recetas de Fernanda</title>
+  <style>
+    body {
+      font-family: Georgia, serif;
+      background-color: #DFBC94;
+      color: #333;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    header {
+      background-color: #E5A657;
+      color: white;
+      text-align: center;
+      padding: 2.5rem 1rem;
+    }
+
+    h1 {
+      margin-bottom: 0;
+      font-size: 2.5rem;
+    }
+
+    main {
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .entrada {
+      background-color: #F5E2CE;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      padding: 1.5rem;
+      transition: transform 0.2s ease;
+      cursor: pointer;
+    }
+
+    .entrada:hover {
+      transform: scale(1.01);
+    }
+
+    .entrada img {
+      height: 250px;
+      width: 300px;
+      display: block;
+      margin: auto;
+      border-radius: 10px;
+      margin-top: 1rem;
+    }
+
+    footer {
+      text-align: center;
+      background-color: #B53324;
+      color: white;
+      padding: 1rem;
+      margin-top: 2rem;
+    }
+
+    .receta-detalle {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background-color: #fff9f4;
+      z-index: 1000;
+      padding: 2rem;
+      box-sizing: border-box;
+      overflow-y: auto;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .receta-detalle.activa {
+      display: flex;
+    }
+
+    .receta-detalle .imagen img {
+      max-width: 400px;
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      margin-right: 2rem;
+    }
+
+    .receta-detalle .instrucciones {
+      max-width: 500px;
+    }
+
+    .receta-detalle .instrucciones h2 {
+      color: #B53324;
+    }
+
+    .cerrar {
+      position: absolute;
+      top: 1rem;
+      right: 2rem;
+      background: transparent;
+      border: none;
+      font-size: 2rem;
+      cursor: pointer;
+      color: #B53324;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Recetas con Amor</h1>
+    <p>Un blog con mis recetas favoritas</p>
+  </header>
+
+  <main>
+    <article class="entrada" onclick="abrirReceta('alfredo')">
+      <h2>🍝 Pasta Alfredo con Pollo</h2>
+      <img src="img/receta1.jpg" alt="Pasta Alfredo" />
+      <p>Una receta cremosa y reconfortante para cualquier ocasión.</p>
+    </article>
+
+    <article class="entrada" onclick="abrirReceta('aguacate')">
+      <h2>🥑 Tostadas de Aguacate</h2>
+      <img src="img/receta2.jpg" alt="Tostadas de Aguacate" />
+      <p>Fáciles, saludables y perfectas para el desayuno.</p>
+    </article>
+
+    <article class="entrada" onclick="abrirReceta('cheesecake')">
+      <h2>🍰 Cheesecake de Fresas</h2>
+      <img src="img/receta3.jpg" alt="Cheesecake" />
+      <p>Postre cremoso con fresas frescas y sin necesidad de hornear.</p>
+    </article>
+  </main>
+
+  <footer>
+    <p>Creado por Fernanda Aragón – 2025</p>
+  </footer>
+
+  <!-- Detalles -->
+  <div class="receta-detalle" id="alfredo">
+    <button class="cerrar" onclick="cerrarReceta('alfredo')">✖</button>
+    <div class="imagen">
+      <img src="img/receta1.jpg" alt="Pasta Alfredo" />
+    </div>
+    <div class="instrucciones">
+      <h2>🍝 Pasta Alfredo con Pollo</h2>
+      <p><strong>Ingredientes:</strong> Pechuga de pollo, crema, mantequilla, queso parmesano, pasta fettuccine, sal, pimienta, ajo.</p>
+      <ol>
+        <li>Cocina la pasta según el paquete.</li>
+        <li>Sazona y dora la pechuga en mantequilla.</li>
+        <li>Agrega ajo, crema y queso parmesano.</li>
+        <li>Mezcla con la pasta y sirve.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="receta-detalle" id="aguacate">
+    <button class="cerrar" onclick="cerrarReceta('aguacate')">✖</button>
+    <div class="imagen">
+      <img src="img/receta2.jpg" alt="Tostadas de Aguacate" />
+    </div>
+    <div class="instrucciones">
+      <h2>🥑 Tostadas de Aguacate</h2>
+      <p><strong>Ingredientes:</strong> Pan integral, aguacate, limón, sal, chile en hojuelas.</p>
+      <ol>
+        <li>Tuesta el pan.</li>
+        <li>Machaca el aguacate con limón y sal.</li>
+        <li>Unta sobre el pan y espolvorea chile.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="receta-detalle" id="cheesecake">
+    <button class="cerrar" onclick="cerrarReceta('cheesecake')">✖</button>
+    <div class="imagen">
+      <img src="img/receta3.jpg" alt="Cheesecake de Fresas" />
+    </div>
+    <div class="instrucciones">
+      <h2>🍰 Cheesecake de Fresas</h2>
+      <p><strong>Ingredientes:</strong> Galletas, mantequilla, queso crema, azúcar, crema para batir, fresas frescas.</p>
+      <ol>
+        <li>Tritura las galletas y mezcla con mantequilla.</li>
+        <li>Prepara el relleno con queso, azúcar y crema.</li>
+        <li>Vierte sobre la base y refrigera.</li>
+        <li>Decora con fresas frescas.</li>
+      </ol>
+    </div>
+  </div>
+
+  <script>
+    function abrirReceta(id) {
+      document.getElementById(id).classList.add("activa");
+      document.body.style.overflow = "hidden";
+    }
+
+    function cerrarReceta(id) {
+      document.getElementById(id).classList.remove("activa");
+      document.body.style.overflow = "";
+    }
+  </script>
+</body>
+</html>
